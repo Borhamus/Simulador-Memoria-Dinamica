@@ -1,0 +1,494 @@
+Procesos de la Tanda:
+-------------------------------------------
+| Nombre  | Arribo | Duración | Memoria |
+-------------------------------------------
+| P1      | 0      | 6        | 307     |
+| P10     | 0      | 6        | 99      |
+| P16     | 0      | 5        | 253     |
+| P27     | 0      | 6        | 389     |
+| P30     | 0      | 5        | 242     |
+| P50     | 0      | 9        | 119     |
+| P91     | 0      | 6        | 106     |
+| P94     | 0      | 9        | 397     |
+| P2      | 2      | 9        | 406     |
+| P15     | 2      | 5        | 366     |
+| P20     | 2      | 6        | 146     |
+| P74     | 2      | 7        | 135     |
+| P80     | 2      | 5        | 475     |
+| P99     | 2      | 5        | 159     |
+| P38     | 3      | 9        | 410     |
+| P40     | 3      | 9        | 367     |
+| P47     | 3      | 6        | 131     |
+| P12     | 4      | 7        | 297     |
+| P19     | 4      | 6        | 22      |
+| P46     | 4      | 7        | 178     |
+| P55     | 4      | 7        | 51      |
+| P62     | 4      | 5        | 197     |
+| P83     | 4      | 7        | 151     |
+| P88     | 4      | 6        | 454     |
+| P3      | 5      | 5        | 51      |
+| P29     | 5      | 8        | 150     |
+| P51     | 5      | 8        | 180     |
+| P68     | 5      | 7        | 449     |
+| P53     | 6      | 5        | 453     |
+| P54     | 6      | 5        | 29      |
+| P58     | 6      | 8        | 88      |
+| P75     | 6      | 9        | 466     |
+| P4      | 7      | 9        | 117     |
+| P6      | 7      | 7        | 370     |
+| P43     | 7      | 5        | 433     |
+| P49     | 7      | 9        | 459     |
+| P66     | 7      | 9        | 258     |
+| P31     | 8      | 5        | 147     |
+| P41     | 8      | 7        | 406     |
+| P5      | 9      | 5        | 397     |
+| P14     | 9      | 7        | 145     |
+| P22     | 9      | 5        | 17      |
+| P81     | 9      | 8        | 313     |
+| P84     | 9      | 5        | 429     |
+| P17     | 10     | 7        | 266     |
+| P45     | 10     | 6        | 468     |
+| P52     | 10     | 7        | 479     |
+| P64     | 10     | 9        | 247     |
+| P79     | 10     | 8        | 248     |
+| P89     | 10     | 6        | 121     |
+| P95     | 10     | 9        | 217     |
+| P7      | 11     | 9        | 169     |
+| P33     | 11     | 5        | 200     |
+| P59     | 11     | 6        | 241     |
+| P76     | 11     | 6        | 94      |
+| P82     | 11     | 6        | 196     |
+| P85     | 11     | 7        | 145     |
+| P11     | 12     | 5        | 160     |
+| P21     | 12     | 6        | 286     |
+| P23     | 12     | 6        | 307     |
+| P28     | 12     | 5        | 194     |
+| P56     | 12     | 8        | 198     |
+| P8      | 13     | 8        | 75      |
+| P48     | 13     | 6        | 322     |
+| P65     | 13     | 8        | 452     |
+| P87     | 13     | 9        | 466     |
+| P97     | 13     | 8        | 480     |
+| P98     | 13     | 7        | 260     |
+| P26     | 14     | 9        | 262     |
+| P72     | 14     | 5        | 163     |
+| P90     | 14     | 6        | 258     |
+| P100    | 14     | 7        | 187     |
+| P32     | 15     | 9        | 312     |
+| P34     | 15     | 7        | 375     |
+| P39     | 15     | 5        | 485     |
+| P73     | 15     | 6        | 337     |
+| P86     | 15     | 8        | 215     |
+| P13     | 16     | 7        | 28      |
+| P18     | 16     | 6        | 275     |
+| P57     | 16     | 7        | 470     |
+| P60     | 16     | 7        | 96      |
+| P61     | 16     | 5        | 143     |
+| P70     | 16     | 8        | 309     |
+| P71     | 16     | 5        | 438     |
+| P77     | 16     | 6        | 182     |
+| P78     | 16     | 8        | 70      |
+| P92     | 16     | 6        | 341     |
+| P93     | 16     | 5        | 451     |
+| P9      | 17     | 8        | 93      |
+| P35     | 17     | 6        | 368     |
+| P42     | 17     | 5        | 462     |
+| P69     | 17     | 8        | 294     |
+| P96     | 17     | 6        | 227     |
+| P24     | 18     | 6        | 409     |
+| P25     | 18     | 5        | 200     |
+| P36     | 18     | 9        | 387     |
+| P37     | 18     | 5        | 328     |
+| P44     | 18     | 6        | 391     |
+| P63     | 18     | 5        | 483     |
+| P67     | 19     | 7        | 148     |
+-------------------------------------------
+
+Configuración del Simulador:
+-------------------------------------------
+Tamaño de memoria: 2000 KB
+Estrategia de asignación: FirstFit
+Tiempo de selección de partición: 1 ms
+Tiempo de carga promedio: 1 ms
+Tiempo de liberación de partición: 1 ms
+-------------------------------------------
+
+Eventos de la Simulación:
+-------------------------------------------
+En el tiempo global 0, el proceso P1 fue asignado correctamente. (Memoria Ocupada: 307 KB de 2000 total)
+En el tiempo global 0, el proceso P10 fue asignado correctamente. (Memoria Ocupada: 406 KB de 2000 total)
+En el tiempo global 0, el proceso P16 fue asignado correctamente. (Memoria Ocupada: 659 KB de 2000 total)
+En el tiempo global 0, el proceso P27 fue asignado correctamente. (Memoria Ocupada: 1048 KB de 2000 total)
+En el tiempo global 0, el proceso P30 fue asignado correctamente. (Memoria Ocupada: 1290 KB de 2000 total)
+En el tiempo global 0, el proceso P50 fue asignado correctamente. (Memoria Ocupada: 1409 KB de 2000 total)
+En el tiempo global 0, el proceso P91 fue asignado correctamente. (Memoria Ocupada: 1515 KB de 2000 total)
+En el tiempo global 0, el proceso P94 fue asignado correctamente. (Memoria Ocupada: 1912 KB de 2000 total)
+En el tiempo global 1, no se asignó ni liberó nada. (Memoria Ocupada: 1912 KB de 2000 total)
+En el tiempo global 2, la memoria estaba llena o era insuficiente para asignar el proceso P2. El proceso quedó esperando.
+En el tiempo global 3, la memoria estaba llena o era insuficiente para asignar el proceso P2. El proceso quedó esperando.
+En el tiempo global 4, la memoria estaba llena o era insuficiente para asignar el proceso P2. El proceso quedó esperando.
+En el tiempo global 5, se liberó memoria de los procesos finalizados: P16, P30. (Memoria Ocupada: 1417 KB de 2000 total)
+En el tiempo global 5, la memoria estaba llena o era insuficiente para asignar el proceso P2. El proceso quedó esperando.
+En el tiempo global 6, se liberó memoria de los procesos finalizados: P1, P10, P27, P91. (Memoria Ocupada: 516 KB de 2000 total)
+En el tiempo global 6, el proceso P2 fue asignado correctamente. (Memoria Ocupada: 922 KB de 2000 total)
+En el tiempo global 6, el proceso P15 fue asignado correctamente. (Memoria Ocupada: 1288 KB de 2000 total)
+En el tiempo global 6, el proceso P20 fue asignado correctamente. (Memoria Ocupada: 1434 KB de 2000 total)
+En el tiempo global 6, el proceso P74 fue asignado correctamente. (Memoria Ocupada: 1569 KB de 2000 total)
+En el tiempo global 6, la memoria estaba llena o era insuficiente para asignar el proceso P80. El proceso quedó esperando.
+En el tiempo global 7, la memoria estaba llena o era insuficiente para asignar el proceso P80. El proceso quedó esperando.
+En el tiempo global 8, la memoria estaba llena o era insuficiente para asignar el proceso P80. El proceso quedó esperando.
+En el tiempo global 9, se liberó memoria de los procesos finalizados: P50, P94. (Memoria Ocupada: 1053 KB de 2000 total)
+En el tiempo global 9, el proceso P80 fue asignado correctamente. (Memoria Ocupada: 1528 KB de 2000 total)
+En el tiempo global 9, el proceso P99 fue asignado correctamente. (Memoria Ocupada: 1687 KB de 2000 total)
+En el tiempo global 9, la memoria estaba llena o era insuficiente para asignar el proceso P38. El proceso quedó esperando.
+En el tiempo global 10, la memoria estaba llena o era insuficiente para asignar el proceso P38. El proceso quedó esperando.
+En el tiempo global 11, se liberó memoria de los procesos finalizados: P15. (Memoria Ocupada: 1321 KB de 2000 total)
+En el tiempo global 11, la memoria estaba llena o era insuficiente para asignar el proceso P38. El proceso quedó esperando.
+En el tiempo global 12, se liberó memoria de los procesos finalizados: P20. (Memoria Ocupada: 1175 KB de 2000 total)
+En el tiempo global 12, el proceso P38 fue asignado correctamente. (Memoria Ocupada: 1585 KB de 2000 total)
+En el tiempo global 12, la memoria estaba llena o era insuficiente para asignar el proceso P40. El proceso quedó esperando.
+En el tiempo global 13, se liberó memoria de los procesos finalizados: P74. (Memoria Ocupada: 1450 KB de 2000 total)
+En el tiempo global 13, la memoria estaba llena o era insuficiente para asignar el proceso P40. El proceso quedó esperando.
+En el tiempo global 14, se liberó memoria de los procesos finalizados: P80, P99. (Memoria Ocupada: 816 KB de 2000 total)
+En el tiempo global 14, el proceso P40 fue asignado correctamente. (Memoria Ocupada: 1183 KB de 2000 total)
+En el tiempo global 14, el proceso P47 fue asignado correctamente. (Memoria Ocupada: 1314 KB de 2000 total)
+En el tiempo global 14, el proceso P12 fue asignado correctamente. (Memoria Ocupada: 1611 KB de 2000 total)
+En el tiempo global 14, el proceso P19 fue asignado correctamente. (Memoria Ocupada: 1633 KB de 2000 total)
+En el tiempo global 14, el proceso P46 fue asignado correctamente. (Memoria Ocupada: 1811 KB de 2000 total)
+En el tiempo global 14, el proceso P55 fue asignado correctamente. (Memoria Ocupada: 1862 KB de 2000 total)
+En el tiempo global 14, la memoria estaba llena o era insuficiente para asignar el proceso P62. El proceso quedó esperando.
+En el tiempo global 15, se liberó memoria de los procesos finalizados: P2. (Memoria Ocupada: 1456 KB de 2000 total)
+En el tiempo global 15, el proceso P62 fue asignado correctamente. (Memoria Ocupada: 1653 KB de 2000 total)
+En el tiempo global 15, el proceso P83 fue asignado correctamente. (Memoria Ocupada: 1804 KB de 2000 total)
+En el tiempo global 15, la memoria estaba llena o era insuficiente para asignar el proceso P88. El proceso quedó esperando.
+En el tiempo global 16, la memoria estaba llena o era insuficiente para asignar el proceso P88. El proceso quedó esperando.
+En el tiempo global 17, la memoria estaba llena o era insuficiente para asignar el proceso P88. El proceso quedó esperando.
+En el tiempo global 18, la memoria estaba llena o era insuficiente para asignar el proceso P88. El proceso quedó esperando.
+En el tiempo global 19, la memoria estaba llena o era insuficiente para asignar el proceso P88. El proceso quedó esperando.
+En el tiempo global 20, se liberó memoria de los procesos finalizados: P62, P47, P19. (Memoria Ocupada: 1454 KB de 2000 total)
+En el tiempo global 20, la memoria estaba llena o era insuficiente para asignar el proceso P88. El proceso quedó esperando.
+En el tiempo global 21, se liberó memoria de los procesos finalizados: P38, P12, P46, P55. (Memoria Ocupada: 518 KB de 2000 total)
+En el tiempo global 21, el proceso P88 fue asignado correctamente. (Memoria Ocupada: 972 KB de 2000 total)
+En el tiempo global 21, el proceso P3 fue asignado correctamente. (Memoria Ocupada: 1023 KB de 2000 total)
+En el tiempo global 21, el proceso P29 fue asignado correctamente. (Memoria Ocupada: 1173 KB de 2000 total)
+En el tiempo global 21, el proceso P51 fue asignado correctamente. (Memoria Ocupada: 1353 KB de 2000 total)
+En el tiempo global 21, el proceso P68 fue asignado correctamente. (Memoria Ocupada: 1802 KB de 2000 total)
+En el tiempo global 21, la memoria estaba llena o era insuficiente para asignar el proceso P53. El proceso quedó esperando.
+En el tiempo global 22, se liberó memoria de los procesos finalizados: P83. (Memoria Ocupada: 1651 KB de 2000 total)
+En el tiempo global 22, la memoria estaba llena o era insuficiente para asignar el proceso P53. El proceso quedó esperando.
+En el tiempo global 23, se liberó memoria de los procesos finalizados: P40. (Memoria Ocupada: 1284 KB de 2000 total)
+En el tiempo global 23, la memoria estaba llena o era insuficiente para asignar el proceso P53. El proceso quedó esperando.
+En el tiempo global 24, la memoria estaba llena o era insuficiente para asignar el proceso P53. El proceso quedó esperando.
+En el tiempo global 25, la memoria estaba llena o era insuficiente para asignar el proceso P53. El proceso quedó esperando.
+En el tiempo global 26, se liberó memoria de los procesos finalizados: P3. (Memoria Ocupada: 1233 KB de 2000 total)
+En el tiempo global 26, la memoria estaba llena o era insuficiente para asignar el proceso P53. El proceso quedó esperando.
+En el tiempo global 27, se liberó memoria de los procesos finalizados: P88. (Memoria Ocupada: 779 KB de 2000 total)
+En el tiempo global 27, el proceso P53 fue asignado correctamente. (Memoria Ocupada: 1232 KB de 2000 total)
+En el tiempo global 27, el proceso P54 fue asignado correctamente. (Memoria Ocupada: 1261 KB de 2000 total)
+En el tiempo global 27, el proceso P58 fue asignado correctamente. (Memoria Ocupada: 1349 KB de 2000 total)
+En el tiempo global 27, el proceso P75 fue asignado correctamente. (Memoria Ocupada: 1815 KB de 2000 total)
+En el tiempo global 27, el proceso P4 fue asignado correctamente. (Memoria Ocupada: 1932 KB de 2000 total)
+En el tiempo global 27, la memoria estaba llena o era insuficiente para asignar el proceso P6. El proceso quedó esperando.
+En el tiempo global 28, se liberó memoria de los procesos finalizados: P68. (Memoria Ocupada: 1483 KB de 2000 total)
+En el tiempo global 28, el proceso P6 fue asignado correctamente. (Memoria Ocupada: 1853 KB de 2000 total)
+En el tiempo global 28, la memoria estaba llena o era insuficiente para asignar el proceso P43. El proceso quedó esperando.
+En el tiempo global 29, se liberó memoria de los procesos finalizados: P29, P51. (Memoria Ocupada: 1523 KB de 2000 total)
+En el tiempo global 29, la memoria estaba llena o era insuficiente para asignar el proceso P43. El proceso quedó esperando.
+En el tiempo global 30, la memoria estaba llena o era insuficiente para asignar el proceso P43. El proceso quedó esperando.
+En el tiempo global 31, la memoria estaba llena o era insuficiente para asignar el proceso P43. El proceso quedó esperando.
+En el tiempo global 32, se liberó memoria de los procesos finalizados: P53, P54. (Memoria Ocupada: 1041 KB de 2000 total)
+En el tiempo global 32, el proceso P43 fue asignado correctamente. (Memoria Ocupada: 1474 KB de 2000 total)
+En el tiempo global 32, la memoria estaba llena o era insuficiente para asignar el proceso P49. El proceso quedó esperando.
+En el tiempo global 33, la memoria estaba llena o era insuficiente para asignar el proceso P49. El proceso quedó esperando.
+En el tiempo global 34, la memoria estaba llena o era insuficiente para asignar el proceso P49. El proceso quedó esperando.
+En el tiempo global 35, se liberó memoria de los procesos finalizados: P58, P6. (Memoria Ocupada: 1016 KB de 2000 total)
+En el tiempo global 35, el proceso P49 fue asignado correctamente. (Memoria Ocupada: 1475 KB de 2000 total)
+En el tiempo global 35, el proceso P66 fue asignado correctamente. (Memoria Ocupada: 1733 KB de 2000 total)
+En el tiempo global 35, la memoria estaba llena o era insuficiente para asignar el proceso P31. El proceso quedó esperando.
+En el tiempo global 36, se liberó memoria de los procesos finalizados: P75, P4. (Memoria Ocupada: 1150 KB de 2000 total)
+En el tiempo global 36, el proceso P31 fue asignado correctamente. (Memoria Ocupada: 1297 KB de 2000 total)
+En el tiempo global 36, el proceso P41 fue asignado correctamente. (Memoria Ocupada: 1703 KB de 2000 total)
+En el tiempo global 36, la memoria estaba llena o era insuficiente para asignar el proceso P5. El proceso quedó esperando.
+En el tiempo global 37, se liberó memoria de los procesos finalizados: P43. (Memoria Ocupada: 1270 KB de 2000 total)
+En el tiempo global 37, el proceso P5 fue asignado correctamente. (Memoria Ocupada: 1667 KB de 2000 total)
+En el tiempo global 37, el proceso P14 fue asignado correctamente. (Memoria Ocupada: 1812 KB de 2000 total)
+En el tiempo global 37, el proceso P22 fue asignado correctamente. (Memoria Ocupada: 1829 KB de 2000 total)
+En el tiempo global 37, la memoria estaba llena o era insuficiente para asignar el proceso P81. El proceso quedó esperando.
+En el tiempo global 38, la memoria estaba llena o era insuficiente para asignar el proceso P81. El proceso quedó esperando.
+En el tiempo global 39, la memoria estaba llena o era insuficiente para asignar el proceso P81. El proceso quedó esperando.
+En el tiempo global 40, la memoria estaba llena o era insuficiente para asignar el proceso P81. El proceso quedó esperando.
+En el tiempo global 41, se liberó memoria de los procesos finalizados: P31. (Memoria Ocupada: 1682 KB de 2000 total)
+En el tiempo global 41, la memoria estaba llena o era insuficiente para asignar el proceso P81. El proceso quedó esperando.
+En el tiempo global 42, se liberó memoria de los procesos finalizados: P5, P22. (Memoria Ocupada: 1268 KB de 2000 total)
+En el tiempo global 42, el proceso P81 fue asignado correctamente. (Memoria Ocupada: 1581 KB de 2000 total)
+En el tiempo global 42, la memoria estaba llena o era insuficiente para asignar el proceso P84. El proceso quedó esperando.
+En el tiempo global 43, se liberó memoria de los procesos finalizados: P41. (Memoria Ocupada: 1175 KB de 2000 total)
+En el tiempo global 43, el proceso P84 fue asignado correctamente. (Memoria Ocupada: 1604 KB de 2000 total)
+En el tiempo global 43, la memoria estaba llena o era insuficiente para asignar el proceso P17. El proceso quedó esperando.
+En el tiempo global 44, se liberó memoria de los procesos finalizados: P14, P49, P66. (Memoria Ocupada: 742 KB de 2000 total)
+En el tiempo global 44, el proceso P17 fue asignado correctamente. (Memoria Ocupada: 1008 KB de 2000 total)
+En el tiempo global 44, el proceso P45 fue asignado correctamente. (Memoria Ocupada: 1476 KB de 2000 total)
+En el tiempo global 44, el proceso P52 fue asignado correctamente. (Memoria Ocupada: 1955 KB de 2000 total)
+En el tiempo global 44, la memoria estaba llena o era insuficiente para asignar el proceso P64. El proceso quedó esperando.
+En el tiempo global 45, la memoria estaba llena o era insuficiente para asignar el proceso P64. El proceso quedó esperando.
+En el tiempo global 46, la memoria estaba llena o era insuficiente para asignar el proceso P64. El proceso quedó esperando.
+En el tiempo global 47, la memoria estaba llena o era insuficiente para asignar el proceso P64. El proceso quedó esperando.
+En el tiempo global 48, se liberó memoria de los procesos finalizados: P84. (Memoria Ocupada: 1526 KB de 2000 total)
+En el tiempo global 48, el proceso P64 fue asignado correctamente. (Memoria Ocupada: 1773 KB de 2000 total)
+En el tiempo global 48, la memoria estaba llena o era insuficiente para asignar el proceso P79. El proceso quedó esperando.
+En el tiempo global 49, la memoria estaba llena o era insuficiente para asignar el proceso P79. El proceso quedó esperando.
+En el tiempo global 50, se liberó memoria de los procesos finalizados: P81, P45. (Memoria Ocupada: 992 KB de 2000 total)
+En el tiempo global 50, el proceso P79 fue asignado correctamente. (Memoria Ocupada: 1240 KB de 2000 total)
+En el tiempo global 50, el proceso P89 fue asignado correctamente. (Memoria Ocupada: 1361 KB de 2000 total)
+En el tiempo global 50, el proceso P95 fue asignado correctamente. (Memoria Ocupada: 1578 KB de 2000 total)
+En el tiempo global 50, el proceso P7 fue asignado correctamente. (Memoria Ocupada: 1747 KB de 2000 total)
+En el tiempo global 50, la memoria estaba llena o era insuficiente para asignar el proceso P33. El proceso quedó esperando.
+En el tiempo global 51, se liberó memoria de los procesos finalizados: P17, P52. (Memoria Ocupada: 1002 KB de 2000 total)
+En el tiempo global 51, el proceso P33 fue asignado correctamente. (Memoria Ocupada: 1202 KB de 2000 total)
+En el tiempo global 51, el proceso P59 fue asignado correctamente. (Memoria Ocupada: 1443 KB de 2000 total)
+En el tiempo global 51, el proceso P76 fue asignado correctamente. (Memoria Ocupada: 1537 KB de 2000 total)
+En el tiempo global 51, el proceso P82 fue asignado correctamente. (Memoria Ocupada: 1733 KB de 2000 total)
+En el tiempo global 51, el proceso P85 fue asignado correctamente. (Memoria Ocupada: 1878 KB de 2000 total)
+En el tiempo global 51, la memoria estaba llena o era insuficiente para asignar el proceso P11. El proceso quedó esperando.
+En el tiempo global 52, la memoria estaba llena o era insuficiente para asignar el proceso P11. El proceso quedó esperando.
+En el tiempo global 53, la memoria estaba llena o era insuficiente para asignar el proceso P11. El proceso quedó esperando.
+En el tiempo global 54, la memoria estaba llena o era insuficiente para asignar el proceso P11. El proceso quedó esperando.
+En el tiempo global 55, la memoria estaba llena o era insuficiente para asignar el proceso P11. El proceso quedó esperando.
+En el tiempo global 56, se liberó memoria de los procesos finalizados: P89, P33. (Memoria Ocupada: 1557 KB de 2000 total)
+En el tiempo global 56, el proceso P11 fue asignado correctamente. (Memoria Ocupada: 1717 KB de 2000 total)
+En el tiempo global 56, la memoria estaba llena o era insuficiente para asignar el proceso P21. El proceso quedó esperando.
+En el tiempo global 57, se liberó memoria de los procesos finalizados: P64, P76, P59, P82. (Memoria Ocupada: 939 KB de 2000 total)
+En el tiempo global 57, el proceso P21 fue asignado correctamente. (Memoria Ocupada: 1225 KB de 2000 total)
+En el tiempo global 57, el proceso P23 fue asignado correctamente. (Memoria Ocupada: 1532 KB de 2000 total)
+En el tiempo global 57, el proceso P28 fue asignado correctamente. (Memoria Ocupada: 1726 KB de 2000 total)
+En el tiempo global 57, la memoria estaba llena o era insuficiente para asignar el proceso P56. El proceso quedó esperando.
+En el tiempo global 58, se liberó memoria de los procesos finalizados: P79, P85. (Memoria Ocupada: 1333 KB de 2000 total)
+En el tiempo global 58, el proceso P56 fue asignado correctamente. (Memoria Ocupada: 1531 KB de 2000 total)
+En el tiempo global 58, el proceso P8 fue asignado correctamente. (Memoria Ocupada: 1606 KB de 2000 total)
+En el tiempo global 58, la memoria estaba llena o era insuficiente para asignar el proceso P48. El proceso quedó esperando.
+En el tiempo global 59, se liberó memoria de los procesos finalizados: P95, P7. (Memoria Ocupada: 1220 KB de 2000 total)
+En el tiempo global 59, el proceso P48 fue asignado correctamente. (Memoria Ocupada: 1542 KB de 2000 total)
+En el tiempo global 59, la memoria estaba llena o era insuficiente para asignar el proceso P65. El proceso quedó esperando.
+En el tiempo global 60, la memoria estaba llena o era insuficiente para asignar el proceso P65. El proceso quedó esperando.
+En el tiempo global 61, se liberó memoria de los procesos finalizados: P11. (Memoria Ocupada: 1382 KB de 2000 total)
+En el tiempo global 61, la memoria estaba llena o era insuficiente para asignar el proceso P65. El proceso quedó esperando.
+En el tiempo global 62, se liberó memoria de los procesos finalizados: P28. (Memoria Ocupada: 1188 KB de 2000 total)
+En el tiempo global 62, la memoria estaba llena o era insuficiente para asignar el proceso P65. El proceso quedó esperando.
+En el tiempo global 63, se liberó memoria de los procesos finalizados: P21, P23. (Memoria Ocupada: 595 KB de 2000 total)
+En el tiempo global 63, el proceso P65 fue asignado correctamente. (Memoria Ocupada: 1047 KB de 2000 total)
+En el tiempo global 63, el proceso P87 fue asignado correctamente. (Memoria Ocupada: 1513 KB de 2000 total)
+En el tiempo global 63, la memoria estaba llena o era insuficiente para asignar el proceso P97. El proceso quedó esperando.
+En el tiempo global 64, la memoria estaba llena o era insuficiente para asignar el proceso P97. El proceso quedó esperando.
+En el tiempo global 65, se liberó memoria de los procesos finalizados: P48. (Memoria Ocupada: 1191 KB de 2000 total)
+En el tiempo global 65, la memoria estaba llena o era insuficiente para asignar el proceso P97. El proceso quedó esperando.
+En el tiempo global 66, se liberó memoria de los procesos finalizados: P56, P8. (Memoria Ocupada: 918 KB de 2000 total)
+En el tiempo global 66, el proceso P97 fue asignado correctamente. (Memoria Ocupada: 1398 KB de 2000 total)
+En el tiempo global 66, la memoria estaba llena o era insuficiente para asignar el proceso P98. El proceso quedó esperando.
+En el tiempo global 67, la memoria estaba llena o era insuficiente para asignar el proceso P98. El proceso quedó esperando.
+En el tiempo global 68, la memoria estaba llena o era insuficiente para asignar el proceso P98. El proceso quedó esperando.
+En el tiempo global 69, la memoria estaba llena o era insuficiente para asignar el proceso P98. El proceso quedó esperando.
+En el tiempo global 70, la memoria estaba llena o era insuficiente para asignar el proceso P98. El proceso quedó esperando.
+En el tiempo global 71, se liberó memoria de los procesos finalizados: P65. (Memoria Ocupada: 946 KB de 2000 total)
+En el tiempo global 71, el proceso P98 fue asignado correctamente. (Memoria Ocupada: 1206 KB de 2000 total)
+En el tiempo global 71, el proceso P26 fue asignado correctamente. (Memoria Ocupada: 1468 KB de 2000 total)
+En el tiempo global 71, el proceso P72 fue asignado correctamente. (Memoria Ocupada: 1631 KB de 2000 total)
+En el tiempo global 71, la memoria estaba llena o era insuficiente para asignar el proceso P90. El proceso quedó esperando.
+En el tiempo global 72, se liberó memoria de los procesos finalizados: P87. (Memoria Ocupada: 1165 KB de 2000 total)
+En el tiempo global 72, el proceso P90 fue asignado correctamente. (Memoria Ocupada: 1423 KB de 2000 total)
+En el tiempo global 72, el proceso P100 fue asignado correctamente. (Memoria Ocupada: 1610 KB de 2000 total)
+En el tiempo global 72, la memoria estaba llena o era insuficiente para asignar el proceso P32. El proceso quedó esperando.
+En el tiempo global 73, la memoria estaba llena o era insuficiente para asignar el proceso P32. El proceso quedó esperando.
+En el tiempo global 74, se liberó memoria de los procesos finalizados: P97. (Memoria Ocupada: 1130 KB de 2000 total)
+En el tiempo global 74, el proceso P32 fue asignado correctamente. (Memoria Ocupada: 1442 KB de 2000 total)
+En el tiempo global 74, la memoria estaba llena o era insuficiente para asignar el proceso P34. El proceso quedó esperando.
+En el tiempo global 75, la memoria estaba llena o era insuficiente para asignar el proceso P34. El proceso quedó esperando.
+En el tiempo global 76, se liberó memoria de los procesos finalizados: P72. (Memoria Ocupada: 1279 KB de 2000 total)
+En el tiempo global 76, el proceso P34 fue asignado correctamente. (Memoria Ocupada: 1654 KB de 2000 total)
+En el tiempo global 76, la memoria estaba llena o era insuficiente para asignar el proceso P39. El proceso quedó esperando.
+En el tiempo global 77, la memoria estaba llena o era insuficiente para asignar el proceso P39. El proceso quedó esperando.
+En el tiempo global 78, se liberó memoria de los procesos finalizados: P98, P90. (Memoria Ocupada: 1136 KB de 2000 total)
+En el tiempo global 78, la memoria estaba llena o era insuficiente para asignar el proceso P39. El proceso quedó esperando.
+En el tiempo global 79, se liberó memoria de los procesos finalizados: P100. (Memoria Ocupada: 949 KB de 2000 total)
+En el tiempo global 79, el proceso P39 fue asignado correctamente. (Memoria Ocupada: 1434 KB de 2000 total)
+En el tiempo global 79, la memoria estaba llena o era insuficiente para asignar el proceso P73. El proceso quedó esperando.
+En el tiempo global 80, se liberó memoria de los procesos finalizados: P26. (Memoria Ocupada: 1172 KB de 2000 total)
+En el tiempo global 80, el proceso P73 fue asignado correctamente. (Memoria Ocupada: 1509 KB de 2000 total)
+En el tiempo global 80, el proceso P86 fue asignado correctamente. (Memoria Ocupada: 1724 KB de 2000 total)
+En el tiempo global 80, el proceso P13 fue asignado correctamente. (Memoria Ocupada: 1752 KB de 2000 total)
+En el tiempo global 80, la memoria estaba llena o era insuficiente para asignar el proceso P18. El proceso quedó esperando.
+En el tiempo global 81, la memoria estaba llena o era insuficiente para asignar el proceso P18. El proceso quedó esperando.
+En el tiempo global 82, la memoria estaba llena o era insuficiente para asignar el proceso P18. El proceso quedó esperando.
+En el tiempo global 83, se liberó memoria de los procesos finalizados: P32, P34. (Memoria Ocupada: 1065 KB de 2000 total)
+En el tiempo global 83, el proceso P18 fue asignado correctamente. (Memoria Ocupada: 1340 KB de 2000 total)
+En el tiempo global 83, el proceso P57 fue asignado correctamente. (Memoria Ocupada: 1810 KB de 2000 total)
+En el tiempo global 83, el proceso P60 fue asignado correctamente. (Memoria Ocupada: 1906 KB de 2000 total)
+En el tiempo global 83, la memoria estaba llena o era insuficiente para asignar el proceso P61. El proceso quedó esperando.
+En el tiempo global 84, se liberó memoria de los procesos finalizados: P39. (Memoria Ocupada: 1421 KB de 2000 total)
+En el tiempo global 84, el proceso P61 fue asignado correctamente. (Memoria Ocupada: 1564 KB de 2000 total)
+En el tiempo global 84, el proceso P70 fue asignado correctamente. (Memoria Ocupada: 1873 KB de 2000 total)
+En el tiempo global 84, la memoria estaba llena o era insuficiente para asignar el proceso P71. El proceso quedó esperando.
+En el tiempo global 85, la memoria estaba llena o era insuficiente para asignar el proceso P71. El proceso quedó esperando.
+En el tiempo global 86, se liberó memoria de los procesos finalizados: P73. (Memoria Ocupada: 1536 KB de 2000 total)
+En el tiempo global 86, la memoria estaba llena o era insuficiente para asignar el proceso P71. El proceso quedó esperando.
+En el tiempo global 87, se liberó memoria de los procesos finalizados: P13. (Memoria Ocupada: 1508 KB de 2000 total)
+En el tiempo global 87, la memoria estaba llena o era insuficiente para asignar el proceso P71. El proceso quedó esperando.
+En el tiempo global 88, se liberó memoria de los procesos finalizados: P86. (Memoria Ocupada: 1293 KB de 2000 total)
+En el tiempo global 88, la memoria estaba llena o era insuficiente para asignar el proceso P71. El proceso quedó esperando.
+En el tiempo global 89, se liberó memoria de los procesos finalizados: P18, P61. (Memoria Ocupada: 875 KB de 2000 total)
+En el tiempo global 89, el proceso P71 fue asignado correctamente. (Memoria Ocupada: 1313 KB de 2000 total)
+En el tiempo global 89, el proceso P77 fue asignado correctamente. (Memoria Ocupada: 1495 KB de 2000 total)
+En el tiempo global 89, el proceso P78 fue asignado correctamente. (Memoria Ocupada: 1565 KB de 2000 total)
+En el tiempo global 89, el proceso P92 fue asignado correctamente. (Memoria Ocupada: 1906 KB de 2000 total)
+En el tiempo global 89, la memoria estaba llena o era insuficiente para asignar el proceso P93. El proceso quedó esperando.
+En el tiempo global 90, se liberó memoria de los procesos finalizados: P57, P60. (Memoria Ocupada: 1340 KB de 2000 total)
+En el tiempo global 90, el proceso P93 fue asignado correctamente. (Memoria Ocupada: 1791 KB de 2000 total)
+En el tiempo global 90, el proceso P9 fue asignado correctamente. (Memoria Ocupada: 1884 KB de 2000 total)
+En el tiempo global 90, la memoria estaba llena o era insuficiente para asignar el proceso P35. El proceso quedó esperando.
+En el tiempo global 91, la memoria estaba llena o era insuficiente para asignar el proceso P35. El proceso quedó esperando.
+En el tiempo global 92, se liberó memoria de los procesos finalizados: P70. (Memoria Ocupada: 1575 KB de 2000 total)
+En el tiempo global 92, el proceso P35 fue asignado correctamente. (Memoria Ocupada: 1943 KB de 2000 total)
+En el tiempo global 92, la memoria estaba llena o era insuficiente para asignar el proceso P42. El proceso quedó esperando.
+En el tiempo global 93, la memoria estaba llena o era insuficiente para asignar el proceso P42. El proceso quedó esperando.
+En el tiempo global 94, se liberó memoria de los procesos finalizados: P71. (Memoria Ocupada: 1505 KB de 2000 total)
+En el tiempo global 94, la memoria estaba llena o era insuficiente para asignar el proceso P42. El proceso quedó esperando.
+En el tiempo global 95, se liberó memoria de los procesos finalizados: P77, P93, P92. (Memoria Ocupada: 531 KB de 2000 total)
+En el tiempo global 95, el proceso P42 fue asignado correctamente. (Memoria Ocupada: 993 KB de 2000 total)
+En el tiempo global 95, el proceso P69 fue asignado correctamente. (Memoria Ocupada: 1287 KB de 2000 total)
+En el tiempo global 95, el proceso P96 fue asignado correctamente. (Memoria Ocupada: 1514 KB de 2000 total)
+En el tiempo global 95, la memoria estaba llena o era insuficiente para asignar el proceso P24. El proceso quedó esperando.
+En el tiempo global 96, la memoria estaba llena o era insuficiente para asignar el proceso P24. El proceso quedó esperando.
+En el tiempo global 97, se liberó memoria de los procesos finalizados: P78. (Memoria Ocupada: 1444 KB de 2000 total)
+En el tiempo global 97, la memoria estaba llena o era insuficiente para asignar el proceso P24. El proceso quedó esperando.
+En el tiempo global 98, se liberó memoria de los procesos finalizados: P9, P35. (Memoria Ocupada: 983 KB de 2000 total)
+En el tiempo global 98, el proceso P24 fue asignado correctamente. (Memoria Ocupada: 1392 KB de 2000 total)
+En el tiempo global 98, el proceso P25 fue asignado correctamente. (Memoria Ocupada: 1592 KB de 2000 total)
+En el tiempo global 98, el proceso P36 fue asignado correctamente. (Memoria Ocupada: 1979 KB de 2000 total)
+En el tiempo global 98, la memoria estaba llena o era insuficiente para asignar el proceso P37. El proceso quedó esperando.
+En el tiempo global 99, la memoria estaba llena o era insuficiente para asignar el proceso P37. El proceso quedó esperando.
+En el tiempo global 100, se liberó memoria de los procesos finalizados: P42. (Memoria Ocupada: 1517 KB de 2000 total)
+En el tiempo global 100, el proceso P37 fue asignado correctamente. (Memoria Ocupada: 1845 KB de 2000 total)
+En el tiempo global 100, la memoria estaba llena o era insuficiente para asignar el proceso P44. El proceso quedó esperando.
+En el tiempo global 101, se liberó memoria de los procesos finalizados: P96. (Memoria Ocupada: 1618 KB de 2000 total)
+En el tiempo global 101, la memoria estaba llena o era insuficiente para asignar el proceso P44. El proceso quedó esperando.
+En el tiempo global 102, la memoria estaba llena o era insuficiente para asignar el proceso P44. El proceso quedó esperando.
+En el tiempo global 103, se liberó memoria de los procesos finalizados: P69, P25. (Memoria Ocupada: 1124 KB de 2000 total)
+En el tiempo global 103, el proceso P44 fue asignado correctamente. (Memoria Ocupada: 1515 KB de 2000 total)
+En el tiempo global 103, la memoria estaba llena o era insuficiente para asignar el proceso P63. El proceso quedó esperando.
+En el tiempo global 104, se liberó memoria de los procesos finalizados: P24. (Memoria Ocupada: 1106 KB de 2000 total)
+En el tiempo global 104, el proceso P63 fue asignado correctamente. (Memoria Ocupada: 1589 KB de 2000 total)
+En el tiempo global 104, el proceso P67 fue asignado correctamente. (Memoria Ocupada: 1737 KB de 2000 total)
+En el tiempo global 105, se liberó memoria de los procesos finalizados: P37. (Memoria Ocupada: 1409 KB de 2000 total)
+En el tiempo global 106, no se asignó ni liberó nada. (Memoria Ocupada: 1409 KB de 2000 total)
+En el tiempo global 107, se liberó memoria de los procesos finalizados: P36. (Memoria Ocupada: 1022 KB de 2000 total)
+En el tiempo global 108, no se asignó ni liberó nada. (Memoria Ocupada: 1022 KB de 2000 total)
+En el tiempo global 109, se liberó memoria de los procesos finalizados: P44, P63. (Memoria Ocupada: 148 KB de 2000 total)
+En el tiempo global 110, no se asignó ni liberó nada. (Memoria Ocupada: 148 KB de 2000 total)
+En el tiempo global 111, se liberó memoria de los procesos finalizados: P67. (Memoria Ocupada: 0 KB de 2000 total)
+-------------------------------------------
+
+Resultados de la Simulación:
+-------------------------------------------
+Tiempo de retorno del proceso P1: 6 unidades de tiempo.
+Tiempo de retorno del proceso P10: 6 unidades de tiempo.
+Tiempo de retorno del proceso P16: 5 unidades de tiempo.
+Tiempo de retorno del proceso P27: 6 unidades de tiempo.
+Tiempo de retorno del proceso P30: 5 unidades de tiempo.
+Tiempo de retorno del proceso P50: 9 unidades de tiempo.
+Tiempo de retorno del proceso P91: 6 unidades de tiempo.
+Tiempo de retorno del proceso P94: 9 unidades de tiempo.
+Tiempo de retorno del proceso P2: 13 unidades de tiempo.
+Tiempo de retorno del proceso P15: 9 unidades de tiempo.
+Tiempo de retorno del proceso P20: 10 unidades de tiempo.
+Tiempo de retorno del proceso P74: 11 unidades de tiempo.
+Tiempo de retorno del proceso P80: 12 unidades de tiempo.
+Tiempo de retorno del proceso P99: 12 unidades de tiempo.
+Tiempo de retorno del proceso P38: 18 unidades de tiempo.
+Tiempo de retorno del proceso P40: 20 unidades de tiempo.
+Tiempo de retorno del proceso P47: 17 unidades de tiempo.
+Tiempo de retorno del proceso P12: 17 unidades de tiempo.
+Tiempo de retorno del proceso P19: 16 unidades de tiempo.
+Tiempo de retorno del proceso P46: 17 unidades de tiempo.
+Tiempo de retorno del proceso P55: 17 unidades de tiempo.
+Tiempo de retorno del proceso P62: 16 unidades de tiempo.
+Tiempo de retorno del proceso P83: 18 unidades de tiempo.
+Tiempo de retorno del proceso P88: 23 unidades de tiempo.
+Tiempo de retorno del proceso P3: 21 unidades de tiempo.
+Tiempo de retorno del proceso P29: 24 unidades de tiempo.
+Tiempo de retorno del proceso P51: 24 unidades de tiempo.
+Tiempo de retorno del proceso P68: 23 unidades de tiempo.
+Tiempo de retorno del proceso P53: 26 unidades de tiempo.
+Tiempo de retorno del proceso P54: 26 unidades de tiempo.
+Tiempo de retorno del proceso P58: 29 unidades de tiempo.
+Tiempo de retorno del proceso P75: 30 unidades de tiempo.
+Tiempo de retorno del proceso P4: 29 unidades de tiempo.
+Tiempo de retorno del proceso P6: 28 unidades de tiempo.
+Tiempo de retorno del proceso P43: 30 unidades de tiempo.
+Tiempo de retorno del proceso P49: 37 unidades de tiempo.
+Tiempo de retorno del proceso P66: 37 unidades de tiempo.
+Tiempo de retorno del proceso P31: 33 unidades de tiempo.
+Tiempo de retorno del proceso P41: 35 unidades de tiempo.
+Tiempo de retorno del proceso P5: 33 unidades de tiempo.
+Tiempo de retorno del proceso P14: 35 unidades de tiempo.
+Tiempo de retorno del proceso P22: 33 unidades de tiempo.
+Tiempo de retorno del proceso P81: 41 unidades de tiempo.
+Tiempo de retorno del proceso P84: 39 unidades de tiempo.
+Tiempo de retorno del proceso P17: 41 unidades de tiempo.
+Tiempo de retorno del proceso P45: 40 unidades de tiempo.
+Tiempo de retorno del proceso P52: 41 unidades de tiempo.
+Tiempo de retorno del proceso P64: 47 unidades de tiempo.
+Tiempo de retorno del proceso P79: 48 unidades de tiempo.
+Tiempo de retorno del proceso P89: 46 unidades de tiempo.
+Tiempo de retorno del proceso P95: 49 unidades de tiempo.
+Tiempo de retorno del proceso P7: 48 unidades de tiempo.
+Tiempo de retorno del proceso P33: 45 unidades de tiempo.
+Tiempo de retorno del proceso P59: 46 unidades de tiempo.
+Tiempo de retorno del proceso P76: 46 unidades de tiempo.
+Tiempo de retorno del proceso P82: 46 unidades de tiempo.
+Tiempo de retorno del proceso P85: 47 unidades de tiempo.
+Tiempo de retorno del proceso P11: 49 unidades de tiempo.
+Tiempo de retorno del proceso P21: 51 unidades de tiempo.
+Tiempo de retorno del proceso P23: 51 unidades de tiempo.
+Tiempo de retorno del proceso P28: 50 unidades de tiempo.
+Tiempo de retorno del proceso P56: 54 unidades de tiempo.
+Tiempo de retorno del proceso P8: 53 unidades de tiempo.
+Tiempo de retorno del proceso P48: 52 unidades de tiempo.
+Tiempo de retorno del proceso P65: 58 unidades de tiempo.
+Tiempo de retorno del proceso P87: 59 unidades de tiempo.
+Tiempo de retorno del proceso P97: 61 unidades de tiempo.
+Tiempo de retorno del proceso P98: 65 unidades de tiempo.
+Tiempo de retorno del proceso P26: 66 unidades de tiempo.
+Tiempo de retorno del proceso P72: 62 unidades de tiempo.
+Tiempo de retorno del proceso P90: 64 unidades de tiempo.
+Tiempo de retorno del proceso P100: 65 unidades de tiempo.
+Tiempo de retorno del proceso P32: 68 unidades de tiempo.
+Tiempo de retorno del proceso P34: 68 unidades de tiempo.
+Tiempo de retorno del proceso P39: 69 unidades de tiempo.
+Tiempo de retorno del proceso P73: 71 unidades de tiempo.
+Tiempo de retorno del proceso P86: 73 unidades de tiempo.
+Tiempo de retorno del proceso P13: 71 unidades de tiempo.
+Tiempo de retorno del proceso P18: 73 unidades de tiempo.
+Tiempo de retorno del proceso P57: 74 unidades de tiempo.
+Tiempo de retorno del proceso P60: 74 unidades de tiempo.
+Tiempo de retorno del proceso P61: 73 unidades de tiempo.
+Tiempo de retorno del proceso P70: 76 unidades de tiempo.
+Tiempo de retorno del proceso P71: 78 unidades de tiempo.
+Tiempo de retorno del proceso P77: 79 unidades de tiempo.
+Tiempo de retorno del proceso P78: 81 unidades de tiempo.
+Tiempo de retorno del proceso P92: 79 unidades de tiempo.
+Tiempo de retorno del proceso P93: 79 unidades de tiempo.
+Tiempo de retorno del proceso P9: 81 unidades de tiempo.
+Tiempo de retorno del proceso P35: 81 unidades de tiempo.
+Tiempo de retorno del proceso P42: 83 unidades de tiempo.
+Tiempo de retorno del proceso P69: 86 unidades de tiempo.
+Tiempo de retorno del proceso P96: 84 unidades de tiempo.
+Tiempo de retorno del proceso P24: 86 unidades de tiempo.
+Tiempo de retorno del proceso P25: 85 unidades de tiempo.
+Tiempo de retorno del proceso P36: 89 unidades de tiempo.
+Tiempo de retorno del proceso P37: 87 unidades de tiempo.
+Tiempo de retorno del proceso P44: 91 unidades de tiempo.
+Tiempo de retorno del proceso P63: 91 unidades de tiempo.
+Tiempo de retorno del proceso P67: 92 unidades de tiempo.
+Tiempo medio de retorno: 45.83 unidades de tiempo.
+Índice de fragmentación externa: 402.32.
+Tiempo total de la simulación: 112 unidades de tiempo.
+-------------------------------------------

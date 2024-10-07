@@ -1,0 +1,18 @@
+        println!("Bienvenido al simulador de memoria dinámica");
+
+        println!("");
+        println!("Este programa forma parte de un trabajo practico integrador de sistemas operativos,");
+        println!("de tercer año, de la carrera Lic. en Sistemas de la universidad de Tierra del Fuego.");
+        println!("");
+        println!("Primero usted deberá crear un archivo de tanda de procesos.");
+        println!("");
+        println!("Dicho archivo tendrá un numero de procesos,");
+        println!("el archivo simulara una tanda de procesos en este formato:");
+        println!("    * Nombre de proceso.");
+        println!("    * Instante de Arribo.");
+        println!("    * Duración total del trabajo.");
+        println!("    * Cantidad de memoria requerida.");
+        println!("");
+
+	println!("Seleccione un numero de 1 a 10.000 para crear un archivo de tanda:");
+

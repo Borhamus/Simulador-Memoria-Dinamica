@@ -1,0 +1,56 @@
+Lógica de Simulador:
+
+El archivo me va a decir cuanto de largo será mi Vector,
+
+un vector estatico, que cada bloque, será una lista dinámica donde cada nodo es una partición.
+
+Vamos a manejar varis índices:
+
+1) Indice de Tiempo Global:
+cada vez que el sistema avance de tiempo, se tienen que activar varias cosas para chekiar. y cada nodo de la lista "hacia la derecha" será la forma de interpretar el tiempo. 
+Pero es el índice el que se posiciona en cada bloque, para indicar los tiempos. cada vez que un tiempo avance, ejemplo de 0 a 1, el índice tiempo apuntara al primer nodo de la lista enlazada, pero uno mas a la derecha.
+
+|Vector | Listas enlazadas                           |
+|Nodos  | tiempoGlobal0| tiempoGlobal1| tiempoGlobal2|
+|=====================================================
+|1	| Nodo1tiempo0 | Nodo1tiempo1 | Nodo1tiempo2 |
+|=====================================================
+|2	| Nodo2Tiempo0 | Nodo2tiempo1 | Nodo2tiempo2 |
+|=====================================================
+|3	| Nodo3Tiempo0 | Nodo3tiempo1 | Nodo3tiempo2 |
+
+
+en esta representación, cuando el índice TiempoGlobal este en 0, apunta al primer nodo de la lista de nodos del tiempo 0, 
+como una multilista quizás, porque el nodo1, debe apuntar al siguiente, nodo2, y nodo2 a nodo 3.
+
+Quizás una multilista seria lo mas inteligente.
+
+Luego, Cuando leo un proceso
+ejemplo: 
+Nombre | Instancia de Arribo | Duración Total | Cant Mem Req. |
+P1     , 0                   , 3              , 2             ;
+
+Lo que y pensaba es que:
+Cada vez que creo una lista de nodos en un nuevo tiempo, me refiero a que del vector nace un nodo de cada elemento del vector "hacia la derecha", guardar ese dato como "DuracionDisponible"
+y cada vez que el indice de tiempo avanza, se resta 1 a "DuracionDisponible", entonces si leo el proceso:
+ejemplo: 
+Nombre | Instancia de Arribo | Duración Total | Cant Mem Req. |
+P1     , 0                   , 3              , 2             ;
+Como duracion total es 3, y al principio tengo "DuracionDisponible" = 0, creo 3 nodos a la derecha de todo el vector.
+Para crear el tiempo total en que el proceso va a ser creado, porque es cero.
+
+si "DuracionDisponible" fuera 1, crearia 2 nodos de todo el vector a la derecha.
+
+para poder asignar el proceso.
+LA asignacion va a tener un comportamiento segun la estrategia.
+Pero el comportamiento del vector tiene que ser igual para todos las estrategias.
+
+Entonces segun una estrategia, se asigna. 
+Vamos a suponer que el usuario eligió First-Fit, entonces en el Nodo1Tiempo0, Nodo1Tiempo1, Nodo1Tiempo2,
+Nodo2Tiempo0, Nodo2Tiempo1, Nodo2Tiempo2,
+se deberá asignar en el tiempoglobal0, en esos nodos de partición se deberá asignar.
+Esos nodos pasan a estar "Ocupados" con un boolean, false para libre true para ocupado.
+
+Entonces el proceso vivira el tiempo que tiene que vivir. 
+El simulador se deberá encargar de leer el próximo proceso.
+

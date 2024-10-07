@@ -1,0 +1,6 @@
+Simulación con 5 procesos
+Proceso_1;Arribo:2;Duración:3;Memoria:10;
+Proceso_2;Arribo:4;Duración:6;Memoria:20;
+Proceso_3;Arribo:6;Duración:9;Memoria:30;
+Proceso_4;Arribo:8;Duración:12;Memoria:40;
+Proceso_5;Arribo:10;Duración:15;Memoria:50;

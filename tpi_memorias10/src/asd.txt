@@ -1,0 +1,908 @@
+======================================================
+//config.rs
+
+use crate::estrategias::EstrategiaAsignacion;  // Asegúrate de que está importando correctamente
+use std::io::{self, Write};
+
+pub struct Config {
+    pub estrategia: EstrategiaAsignacion,  // Usamos la estrategia de asignación definida en estrategias.rs
+    pub tamanio_memoria: u32,
+    pub tiempo_seleccion: u32,
+    pub tiempo_carga: u32,
+    pub tiempo_liberacion: u32,
+}
+
+impl Config {
+    /// Función principal para obtener una nueva configuración desde el usuario
+    pub fn nueva_configuracion() -> Config {
+        let tamanio_memoria = Config::set_tamanio_memoria();
+        let estrategia = Config::set_estrategia();  // Selecciona la estrategia
+        let tiempo_seleccion = Config::tiempo_seleccion();
+        let tiempo_carga = Config::tiempo_carga_promedio();
+        let tiempo_liberacion = Config::tiempo_liberacion();
+
+        Config {
+            estrategia,
+            tamanio_memoria,
+            tiempo_seleccion,
+            tiempo_carga,
+            tiempo_liberacion,
+        }
+    }
+
+    /// Función para pedir el tamaño de la memoria física disponible
+    fn set_tamanio_memoria() -> u32 {
+        loop {
+            let mut tamanio_memoria = String::new();
+            print!("Ingrese el tamaño de la memoria física disponible (en KB): ");
+            io::stdout().flush().unwrap();
+            io::stdin().read_line(&mut tamanio_memoria).expect("Error al leer el tamaño de la memoria");
+
+            match tamanio_memoria.trim().parse::<u32>() {
+                Ok(tamanio) if tamanio > 0 => return tamanio,
+                _ => println!("Por favor ingrese un tamaño de memoria válido (número mayor que 0)."),
+            }
+        }
+    }
+
+    /// Función para seleccionar la estrategia de asignación
+    fn set_estrategia() -> EstrategiaAsignacion {
+        loop {
+            println!("Seleccione la estrategia de asignación de memoria:");
+            println!("1) First-fit (Primer ajuste)");
+            println!("2) Best-fit (Mejor ajuste)");
+            println!("3) Next-fit (Siguiente ajuste)");
+            println!("4) Worst-fit (Peor ajuste)");
+
+            let mut opcion = String::new();
+            print!("Seleccione una opción (1-4): ");
+            io::stdout().flush().unwrap();
+            io::stdin().read_line(&mut opcion).expect("Error al leer la opción");
+
+            match opcion.trim() {
+                "1" => return EstrategiaAsignacion::FirstFit,
+                "2" => return EstrategiaAsignacion::BestFit,
+                "3" => return EstrategiaAsignacion::NextFit,
+                "4" => return EstrategiaAsignacion::WorstFit,
+                _ => println!("Opción no válida. Por favor ingrese 1, 2, 3 o 4."),
+            }
+        }
+    }
+
+    /// Función para pedir el tiempo de selección de partición
+    fn tiempo_seleccion() -> u32 {
+        Config::pedir_tiempo("selección de partición")
+    }
+
+    /// Función para pedir el tiempo de carga promedio
+    fn tiempo_carga_promedio() -> u32 {
+        Config::pedir_tiempo("carga promedio")
+    }
+
+    /// Función para pedir el tiempo de liberación de partición
+    fn tiempo_liberacion() -> u32 {
+        Config::pedir_tiempo("liberación de partición")
+    }
+
+    /// Función genérica para pedir tiempos (selección, carga, liberación)
+    fn pedir_tiempo(tipo: &str) -> u32 {
+        loop {
+            let mut tiempo = String::new();
+            print!("Ingrese el tiempo de {} (en milisegundos): ", tipo);
+            io::stdout().flush().unwrap();
+            io::stdin().read_line(&mut tiempo).expect("Error al leer el tiempo");
+
+            match tiempo.trim().parse::<u32>() {
+                Ok(tiempo) if tiempo > 0 => return tiempo,
+                _ => println!("Por favor ingrese un valor válido para el tiempo (en milisegundos)."),
+            }
+        }
+    }
+}
+
+======================================================
+//estrategia.rs
+
+use crate::particion::Particion;
+use crate::proceso::Proceso;
+
+#[derive(Clone, Copy)]
+pub enum EstrategiaAsignacion {
+    FirstFit,
+    BestFit,
+    NextFit,
+    WorstFit,
+}
+
+impl EstrategiaAsignacion {
+    pub fn asignar_tanda(
+        &self,
+        particiones: &mut Vec<Particion>,
+        procesos: &Vec<Proceso>,
+    ) -> Vec<Option<usize>> {
+        let mut ultima_asignada: usize = 0;
+        let mut asignaciones = Vec::new();
+
+        for proceso in procesos {
+            let asignacion = match self {
+                EstrategiaAsignacion::FirstFit => first_fit(particiones, proceso),
+                EstrategiaAsignacion::BestFit => best_fit(particiones, proceso),
+                EstrategiaAsignacion::NextFit => next_fit(particiones, proceso, &mut ultima_asignada),
+                EstrategiaAsignacion::WorstFit => worst_fit(particiones, proceso),
+            };
+            asignaciones.push(asignacion);
+        }
+
+        asignaciones
+    }
+}
+
+pub fn first_fit(particiones: &mut Vec<Particion>, proceso: &Proceso) -> Option<usize> {
+    for (i, particion) in particiones.iter_mut().enumerate() {
+        if particion.espacio_libre() >= proceso.memoria_requerida {
+            particion.ocupar(&proceso.nombre); // Corregido: Pasamos &proceso.nombre
+            return Some(i);
+        }
+    }
+    None
+}
+
+pub fn best_fit(particiones: &mut Vec<Particion>, proceso: &Proceso) -> Option<usize> {
+    let mut mejor_particion: Option<(usize, u32)> = None;
+    for (i, particion) in particiones.iter_mut().enumerate() {
+        let espacio_libre = particion.espacio_libre();
+        if espacio_libre >= proceso.memoria_requerida {
+            if mejor_particion.is_none() || espacio_libre < mejor_particion.unwrap().1 {
+                mejor_particion = Some((i, espacio_libre));
+            }
+        }
+    }
+
+    if let Some((i, _)) = mejor_particion {
+        particiones[i].ocupar(&proceso.nombre); // Corregido: Pasamos &proceso.nombre
+        Some(i)
+    } else {
+        None
+    }
+}
+
+pub fn next_fit(particiones: &mut Vec<Particion>, proceso: &Proceso, ultima_asignada: &mut usize) -> Option<usize> {
+    for i in (*ultima_asignada..particiones.len()).chain(0..*ultima_asignada) {
+        if particiones[i].espacio_libre() >= proceso.memoria_requerida {
+            particiones[i].ocupar(&proceso.nombre); // Corregido: Pasamos &proceso.nombre
+            *ultima_asignada = i;
+            return Some(i);
+        }
+    }
+    None
+}
+
+pub fn worst_fit(particiones: &mut Vec<Particion>, proceso: &Proceso) -> Option<usize> {
+    let mut peor_particion: Option<(usize, u32)> = None;
+    let mut mayor_tamanio: u32 = 0;
+    for (i, particion) in particiones.iter_mut().enumerate() {
+        let espacio_libre = particion.espacio_libre();
+        if espacio_libre >= proceso.memoria_requerida {
+            if espacio_libre > mayor_tamanio {
+                mayor_tamanio = espacio_libre;
+                peor_particion = Some((i, espacio_libre));
+            }
+        }
+    }
+
+    if let Some((i, _)) = peor_particion {
+        particiones[i].ocupar(&proceso.nombre); // Corregido: Pasamos &proceso.nombre
+        Some(i)
+    } else {
+        None
+    }
+}
+
+======================================================
+//generador.rs
+
+use crate::proceso::Proceso;
+use rand::Rng;
+use std::io::{self, Write};
+
+/// Función que genera un conjunto de procesos
+pub fn generar_procesos() -> Vec<Proceso> {
+    let num_procesos = pidenum();
+    generar_procesos_aleatorios(num_procesos)
+}
+
+/// Función que pide al usuario el número de procesos
+fn pidenum() -> usize {
+    loop {
+        let mut input = String::new();
+        print!("Ingrese el número de procesos a generar: ");
+        io::stdout().flush().unwrap();
+        io::stdin().read_line(&mut input).expect("Error al leer el número de procesos");
+
+        match input.trim().parse::<usize>() {
+            Ok(num) if num > 0 => return num,
+            _ => println!("Por favor ingrese un número válido mayor que 0."),
+        }
+    }
+}
+
+/// Función que genera una cantidad de procesos aleatorios
+fn generar_procesos_aleatorios(num_procesos: usize) -> Vec<Proceso> {
+    let mut procesos = Vec::new();
+    let mut rng = rand::thread_rng();
+
+    for i in 1..=num_procesos {
+        let nombre = format!("P{}", i);
+        let arribo = rng.gen_range(0..100); // Instante de arribo aleatorio
+        let duracion = rng.gen_range(5..20); // Duración aleatoria entre 5 y 20 unidades de tiempo
+        let memoria_requerida = rng.gen_range(50..500); // Memoria requerida entre 50KB y 500KB
+
+        let proceso = Proceso::new(&nombre, arribo, duracion, memoria_requerida);
+        procesos.push(proceso);
+    }
+
+    procesos
+}
+
+======================================================
+//main.rs
+
+mod config;
+mod estrategias;
+mod generador;
+mod manipular_archivo;
+mod memoria;
+mod nueva_simulacion;
+mod particion;
+mod proceso;
+mod simulador;
+mod visualizador;
+
+
+fn limpiar_consola() {
+    if cfg!(target_os = "windows") {
+        std::process::Command::new("cmd").args(&["/C", "cls"]).status().unwrap();
+    } else {
+        std::process::Command::new("clear").status().unwrap();
+    }
+}
+
+fn crear_carpetas() {
+    // Crear carpetas si no existen
+    let path = std::path::Path::new("files");
+    if !path.exists() {
+        std::fs::create_dir_all(path).expect("No se pudo crear la carpeta 'files'");
+    }
+}
+
+fn menu() {
+    loop {
+        println!("1) Nueva Simulación");
+        println!("2) Ver simulaciones anteriores");
+        println!("3) Salir");
+
+        let mut opcion = String::new();
+        std::io::stdin().read_line(&mut opcion).expect("Error al leer opción");
+
+        match opcion.trim() {
+            "1" => nueva_simulacion::NuevaSimulacion::nueva_tanda(),
+            "2" => visualizador::mostrar_simulaciones(),
+            "3" => break,
+            _ => println!("Opción no válida"),
+        }
+    }
+}
+
+fn main() {
+    limpiar_consola();
+    crear_carpetas();
+    menu();
+}
+
+======================================================
+//manipular_archivos.rs
+
+use crate::proceso::Proceso;
+use crate::config::Config;
+use crate::particion::{Particion, EstadoParticion};  // Importar Particion y EstadoParticion
+use std::fs::{File, OpenOptions};
+use std::io::{BufWriter, Write, BufReader, BufRead};
+use std::path::Path;
+
+pub struct ManipularArchivo;
+
+impl ManipularArchivo {
+    /// Función para leer "Procesos de la Tanda" y "Datos de la Configuración del Simulador", crear un archivo con nombre según el formato y guardar la información
+    pub fn leer_y_guardar_procesos_y_configuracion(
+        procesos: String,            // Procesos de la Tanda (en formato string)
+        configuracion: String,       // Datos de la Configuración del Simulador
+        num_procesos: usize,
+        estrategia: &str,
+    ) -> String {
+        // Crear el nombre del archivo con el formato `XX_procesos(YY)_estrategia(ZZ).txt`
+        let nombre_archivo = format!("files/{}_procesos({})_estrategia({}).txt", "simulacion", num_procesos, estrategia);
+        let path = Path::new(&nombre_archivo);
+
+        // Crear o abrir el archivo para escribir
+        let file = File::create(&path).expect("No se pudo crear el archivo");
+        let mut writer = BufWriter::new(file);
+
+        // Escribir la tabla explicativa para los procesos
+        writeln!(writer, "Procesos de la Tanda:").expect("Error al escribir en el archivo");
+        writeln!(writer, "------------------------------").expect("Error al escribir línea divisora");
+        writeln!(writer, "| Nombre  | Arribo | Duración | Memoria |").expect("Error al escribir encabezado");
+        writeln!(writer, "------------------------------").expect("Error al escribir línea divisora");
+
+        // Escribir los procesos, cada uno en una nueva línea
+        for proceso in procesos.split(';') {
+            if !proceso.trim().is_empty() {
+                writeln!(writer, "{};", proceso).expect("Error al escribir los procesos de la tanda");
+            }
+        }
+
+        // Guardar los datos de la configuración del simulador en el archivo
+        writeln!(writer, "\nDatos de la Configuración del Simulador:").expect("Error al escribir configuración");
+        writeln!(writer, "{}", configuracion).expect("Error al escribir la configuración del simulador");
+
+        // Retornar el nombre del archivo para su uso posterior
+        nombre_archivo
+    }
+
+    /// Función para cargar los procesos y particiones desde el archivo
+    pub fn cargar_datos_desde_archivo(nombre_archivo: &str) -> (Vec<Proceso>, Vec<Particion>) {
+        let mut procesos = Vec::new();
+        let mut particiones = Vec::new();
+        let path = Path::new(nombre_archivo);
+        let file = File::open(&path).expect("No se pudo abrir el archivo");
+
+        let reader = BufReader::new(file);
+        let mut leyendo_procesos = false;
+        let mut leyendo_memoria = false;
+
+        // Leer el archivo línea por línea
+        for line in reader.lines() {
+            let line = line.expect("Error al leer la línea");
+
+            // Detección de las secciones para empezar a leer procesos y memoria
+            if line.contains("Procesos de la Tanda:") {
+                leyendo_procesos = true;
+                leyendo_memoria = false;
+                continue;
+            }
+            if line.contains("Particiones:") {
+                leyendo_procesos = false;
+                leyendo_memoria = true;
+                continue;
+            }
+
+            // Cargar los procesos (formato: "proceso1,arribo,duración,memoria;")
+            if leyendo_procesos && line.contains(',') {
+                let procesos_linea = line.split(';').collect::<Vec<&str>>();
+                for proceso_str in procesos_linea {
+                    let datos: Vec<&str> = proceso_str.split(',').collect();
+                    if datos.len() == 4 {
+                        let nombre = datos[0].to_string();
+                        let arribo = datos[1].parse::<usize>().expect("Error al parsear arribo");
+                        let duracion = datos[2].parse::<usize>().expect("Error al parsear duración");
+                        let memoria_requerida = datos[3].parse::<u32>().expect("Error al parsear memoria");
+
+                        let proceso = Proceso::new(&nombre, arribo, duracion, memoria_requerida);
+                        procesos.push(proceso);
+                    }
+                }
+            }
+
+            // Cargar la memoria física (particiones)
+            if leyendo_memoria && line.contains('|') {
+                let parts: Vec<&str> = line.split('|').map(|s| s.trim()).collect();
+                if parts.len() == 5 {
+                    let id = parts[1].parse::<usize>().expect("Error al parsear ID");
+                    let direccion_comienzo = parts[2].parse::<u32>().expect("Error al parsear dirección");
+                    let tamanio = parts[3].parse::<u32>().expect("Error al parsear tamaño");
+                    let estado = match parts[4] {
+                        "Libre" => EstadoParticion::Libre,
+                        _ => EstadoParticion::Ocupada(parts[4].to_string()),
+                    };
+
+                    let particion = Particion {
+                        id,
+                        direccion_comienzo,
+                        tamanio,
+                        estado,
+                    };
+                    particiones.push(particion);
+                }
+            }
+        }
+
+        (procesos, particiones)
+    }
+
+    /// Función para guardar eventos y resultados en el archivo
+    pub fn guardar_eventos_y_resultados(
+        nombre_archivo: &str,
+        eventos: Vec<String>,
+        resultados: Vec<String>,
+    ) {
+        let path = Path::new(nombre_archivo);
+        let mut file = OpenOptions::new()
+            .write(true)
+            .append(true)
+            .open(&path)
+            .expect("No se pudo abrir el archivo para escribir eventos y resultados");
+
+        // Guardar los eventos
+        writeln!(file, "\nEventos de la simulación:").expect("Error al escribir encabezado de eventos");
+        for evento in eventos {
+            writeln!(file, "{}", evento).expect("Error al escribir evento");
+        }
+
+        // Guardar los resultados
+        writeln!(file, "\nResultados finales de la simulación:").expect("Error al escribir encabezado de resultados");
+        for resultado in resultados {
+            writeln!(file, "{}", resultado).expect("Error al escribir resultado");
+        }
+    }
+}
+
+======================================================
+//memoria.rs
+
+
+use crate::proceso::Proceso;
+use crate::estrategias::EstrategiaAsignacion;
+use std::rc::Rc;
+use std::cell::RefCell;
+
+// Nodo que representa una partición de memoria en la lista enlazada
+pub struct Particion {
+    pub id: usize,
+    pub direccion_comienzo: u32,
+    pub tamanio: u32,
+    pub estado: EstadoParticion,
+    pub siguiente: Option<Rc<RefCell<Particion>>>,  // Referencia a la siguiente partición
+}
+
+#[derive(Debug, Clone)]
+pub enum EstadoParticion {
+    Libre,
+    Ocupada(String),  // Almacena el nombre del proceso
+}
+
+impl Particion {
+    /// Crea una nueva partición libre
+    pub fn new(id: usize, direccion_comienzo: u32, tamanio: u32) -> Particion {
+        Particion {
+            id,
+            direccion_comienzo,
+            tamanio,
+            estado: EstadoParticion::Libre,
+            siguiente: None,  // Sin siguiente por defecto
+        }
+    }
+
+    /// Marca la partición como ocupada por un proceso
+    pub fn ocupar(&mut self, nombre_proceso: String) {
+        self.estado = EstadoParticion::Ocupada(nombre_proceso);
+    }
+
+    /// Libera la partición
+    pub fn liberar(&mut self) {
+        self.estado = EstadoParticion::Libre;
+    }
+
+    /// Devuelve el espacio libre en la partición
+    pub fn espacio_libre(&self) -> u32 {
+        match self.estado {
+            EstadoParticion::Libre => self.tamanio,
+            EstadoParticion::Ocupada(_) => 0,
+        }
+    }
+}
+
+// Estructura que representa la memoria como una lista enlazada de particiones
+pub struct Memoria {
+    pub primer_particion: Option<Rc<RefCell<Particion>>>,  // Referencia a la primera partición
+    pub ultima_asignada: Option<Rc<RefCell<Particion>>>,   // Usado para Next Fit
+}
+
+impl Memoria {
+    /// Crea una nueva memoria con una lista de particiones
+    pub fn new(primer_particion: Option<Rc<RefCell<Particion>>>) -> Memoria {
+        Memoria {
+            primer_particion,
+            ultima_asignada: None,  // Inicializamos sin asignar
+        }
+    }
+
+    /// Asigna una tanda de procesos a las particiones según la estrategia dada
+    pub fn asignar_tanda(
+        &mut self,
+        procesos: &Vec<Proceso>,
+        estrategia: EstrategiaAsignacion,
+    ) -> Vec<Option<usize>> {
+        let mut asignaciones = Vec::new();
+        let mut ultima_asignada = self.ultima_asignada.clone();
+
+        for proceso in procesos {
+            let asignacion = match estrategia {
+                EstrategiaAsignacion::FirstFit => self.first_fit(proceso),
+                EstrategiaAsignacion::BestFit => self.best_fit(proceso),
+                EstrategiaAsignacion::NextFit => self.next_fit(proceso, &mut ultima_asignada),
+                EstrategiaAsignacion::WorstFit => self.worst_fit(proceso),
+            };
+            asignaciones.push(asignacion);
+        }
+
+        self.ultima_asignada = ultima_asignada;  // Actualizamos la última asignada (para NextFit)
+        asignaciones
+    }
+
+    /// Implementación de First Fit
+    fn first_fit(&mut self, proceso: &Proceso) -> Option<usize> {
+        let mut particion_actual = self.primer_particion.clone();
+        while let Some(particion) = particion_actual {
+            let mut particion_mut = particion.borrow_mut();
+            if particion_mut.espacio_libre() >= proceso.memoria_requerida {
+                particion_mut.ocupar(proceso.nombre.clone());
+                return Some(particion_mut.id);
+            }
+            particion_actual = particion_mut.siguiente.clone();
+        }
+        None
+    }
+
+    /// Implementación de Best Fit
+    fn best_fit(&mut self, proceso: &Proceso) -> Option<usize> {
+        let mut particion_actual = self.primer_particion.clone();
+        let mut mejor_particion: Option<Rc<RefCell<Particion>>> = None;
+        let mut menor_diferencia: u32 = u32::MAX;
+
+        while let Some(particion) = particion_actual {
+            let particion_ref = particion.borrow();
+            let espacio_libre = particion_ref.espacio_libre();
+            if espacio_libre >= proceso.memoria_requerida && espacio_libre < menor_diferencia {
+                mejor_particion = Some(particion.clone());
+                menor_diferencia = espacio_libre;
+            }
+            particion_actual = particion_ref.siguiente.clone();
+        }
+
+        if let Some(mejor_particion) = mejor_particion {
+            mejor_particion.borrow_mut().ocupar(proceso.nombre.clone());
+            return Some(mejor_particion.borrow().id);
+        }
+
+        None
+    }
+
+    /// Implementación de Next Fit
+    fn next_fit(&mut self, proceso: &Proceso, ultima_asignada: &mut Option<Rc<RefCell<Particion>>>) -> Option<usize> {
+        let mut particion_actual = ultima_asignada.clone().or_else(|| self.primer_particion.clone());
+
+        while let Some(particion) = particion_actual {
+            let mut particion_mut = particion.borrow_mut();
+            if particion_mut.espacio_libre() >= proceso.memoria_requerida {
+                particion_mut.ocupar(proceso.nombre.clone());
+                *ultima_asignada = Some(particion.clone());
+                return Some(particion_mut.id);
+            }
+            particion_actual = particion_mut.siguiente.clone();
+        }
+        None
+    }
+
+    /// Implementación de Worst Fit
+    fn worst_fit(&mut self, proceso: &Proceso) -> Option<usize> {
+        let mut particion_actual = self.primer_particion.clone();
+        let mut peor_particion: Option<Rc<RefCell<Particion>>> = None;
+        let mut mayor_tamanio: u32 = 0;
+
+        while let Some(particion) = particion_actual {
+            let particion_ref = particion.borrow();
+            let espacio_libre = particion_ref.espacio_libre();
+            if espacio_libre >= proceso.memoria_requerida && espacio_libre > mayor_tamanio {
+                peor_particion = Some(particion.clone());
+                mayor_tamanio = espacio_libre;
+            }
+            particion_actual = particion_ref.siguiente.clone();
+        }
+
+        if let Some(peor_particion) = peor_particion {
+            peor_particion.borrow_mut().ocupar(proceso.nombre.clone());
+            return Some(peor_particion.borrow().id);
+        }
+
+        None
+    }
+
+    /// Libera una partición dado su índice
+    pub fn liberar_particion(&mut self, indice_particion: usize) {
+        let mut particion_actual = self.primer_particion.clone();
+
+        while let Some(particion) = particion_actual {
+            if particion.borrow().id == indice_particion {
+                particion.borrow_mut().liberar();
+                return;
+            }
+            particion_actual = particion.borrow().siguiente.clone();
+        }
+    }
+
+    /// Muestra el estado actual de la memoria (particiones)
+    pub fn mostrar_estado(&self) {
+        println!("{:<10} {:<15} {:<10} {:<10}", "ID", "Dirección", "Tamaño", "Estado");
+        println!("---------------------------------------------------");
+        let mut particion_actual = self.primer_particion.clone();
+
+        while let Some(particion) = particion_actual {
+            let particion_ref = particion.borrow();
+            let estado = match &particion_ref.estado {
+                EstadoParticion::Libre => "Libre".to_string(),
+                EstadoParticion::Ocupada(nombre_proceso) => format!("Ocupada ({})", nombre_proceso),
+            };
+            println!(
+                "{:<10} {:<15} {:<10} {:<10}",
+                particion_ref.id, particion_ref.direccion_comienzo, particion_ref.tamanio, estado
+            );
+            particion_actual = particion_ref.siguiente.clone();
+        }
+    }
+}
+
+======================================================
+//nueva_simulacion.rs
+
+use crate::config::Config;
+use crate::generador;
+use crate::manipular_archivo;
+use crate::simulador;
+use std::fs;
+
+/// Estructura principal para manejar la simulación
+pub struct NuevaSimulacion;
+
+impl NuevaSimulacion {
+    /// Función principal que gestiona la creación y ejecución de la simulación
+    pub fn nueva_tanda() {
+        // 1. Llamar al generador de procesos
+        let procesos = generador::generar_procesos();
+
+        // 2. Configurar la simulación
+        let configuracion = Config::nueva_configuracion();
+
+        // 3. Guardar los procesos y la configuración en un archivo
+        let nombre_archivo = manipular_archivo::guardar_procesos_y_configuracion(&procesos, &configuracion);
+
+        // 4. Ejecutar la simulación
+        simulador::ejecutar_simulacion(&procesos, &configuracion, &nombre_archivo);
+
+        // 5. Mostrar los resultados guardados
+        println!("Simulación completada. Resultados guardados en el archivo: {}", nombre_archivo);
+
+        // 6. Mostrar el archivo generado por pantalla
+        Self::mostrar_resultados(&nombre_archivo);
+    }
+
+    /// Función para mostrar los resultados del archivo generado por pantalla
+    fn mostrar_resultados(nombre_archivo: &str) {
+        let path = format!("files/{}", nombre_archivo);
+
+        // Intentamos abrir y leer el archivo
+        if let Ok(file) = fs::read_to_string(&path) {
+            println!("Contenido del archivo generado:\n");
+            println!("{}", file);
+        } else {
+            println!("Error al abrir el archivo de simulación.");
+        }
+    }
+}
+
+======================================================
+//particion.rs
+
+
+#[derive(Debug, Clone)]
+pub struct Particion {
+    pub id: usize,
+    pub direccion_comienzo: u32,
+    pub tamanio: u32,
+    pub estado: EstadoParticion,
+}
+
+impl Particion {
+    /// Crea una nueva partición.
+    pub fn new(id: usize, direccion_comienzo: u32, tamanio: u32) -> Particion {
+        Particion {
+            id,
+            direccion_comienzo,
+            tamanio,
+            estado: EstadoParticion::Libre,
+        }
+    }
+
+    /// Devuelve el espacio libre en la partición (si está libre).
+    pub fn espacio_libre(&self) -> u32 {
+        match self.estado {
+            EstadoParticion::Libre => self.tamanio,
+            EstadoParticion::Ocupada(_) => 0,
+        }
+    }
+
+    /// Marca la partición como ocupada por un proceso.
+    pub fn ocupar(&mut self, nombre_proceso: &str) {
+        self.estado = EstadoParticion::Ocupada(nombre_proceso.to_string());
+    }
+
+    /// Marca la partición como libre.
+    pub fn liberar(&mut self) {
+        self.estado = EstadoParticion::Libre;
+    }
+}
+
+/// Define los estados posibles de una partición: libre o ocupada por un proceso.
+#[derive(Debug, Clone)]
+pub enum EstadoParticion {
+    Libre,
+    Ocupada(String), // Almacena el nombre del proceso que ocupa la partición
+}
+
+======================================================
+//proceso.rs
+
+#[derive(Clone)]  // Para que podamos clonar procesos si es necesario
+pub struct Proceso {
+    pub nombre: String,
+    pub arribo: usize,
+    pub duracion: usize,
+    pub memoria_requerida: u32,
+}
+
+impl Proceso {
+    /// Crea un nuevo proceso
+    pub fn new(nombre: &str, arribo: usize, duracion: usize, memoria_requerida: u32) -> Proceso {
+        Proceso {
+            nombre: nombre.to_string(),
+            arribo,
+            duracion,
+            memoria_requerida,
+        }
+    }
+
+    /// Obtener el nombre del proceso
+    pub fn get_nombre(&self) -> &str {
+        &self.nombre
+    }
+
+    /// Obtener el instante de arribo del proceso
+    pub fn get_arribo(&self) -> usize {
+        self.arribo
+    }
+
+    /// Obtener la duración del proceso
+    pub fn get_duracion(&self) -> usize {
+        self.duracion
+    }
+
+    /// Obtener la memoria requerida por el proceso
+    pub fn get_memoria_requerida(&self) -> u32 {
+        self.memoria_requerida
+    }
+}
+
+======================================================
+//simulador.rs
+
+use crate::proceso::Proceso;
+use crate::config::Config;
+use crate::manipular_archivo::ManipularArchivo;
+
+pub struct Simulador;
+
+impl Simulador {
+    pub fn ejecutar_simulacion(procesos: &Vec<Proceso>, configuracion: &Config, archivo: &str) {
+        // Ejecutar la simulación de los procesos usando la configuración
+        let eventos = Vec::new();  // Aquí se simulan los eventos
+        ManipularArchivo::guardar_eventos(archivo, eventos);
+    }
+
+    pub fn imprimir_por_pantalla(archivo: &str) {
+        // Lógica para imprimir los resultados de la simulación por pantalla
+    }
+}
+
+======================================================
+//visualizador.rs
+
+use std::fs::{self, File};
+use std::io::{self, BufRead};
+use std::path::Path;
+
+/// Función que lista las simulaciones previas y permite seleccionar una para mostrarla por pantalla.
+pub fn mostrar_simulaciones() {
+    // Listamos los archivos de simulaciones almacenados en la carpeta correspondiente
+    let simulaciones = enlistar_simulaciones();
+
+    // Si no hay simulaciones, lo notificamos al usuario
+    if simulaciones.is_empty() {
+        println!("No se encontraron simulaciones previas.");
+        return;
+    }
+
+    // Mostramos las simulaciones disponibles
+    println!("Simulaciones disponibles:");
+    for (i, archivo) in simulaciones.iter().enumerate() {
+        println!("{}: {}", i + 1, archivo);
+    }
+
+    // Solicitamos al usuario que seleccione una simulación para ver
+    println!("Seleccione el número de la simulación que desea ver (0 para volver):");
+
+    let mut opcion = String::new();
+    io::stdin()
+        .read_line(&mut opcion)
+        .expect("Error al leer opción");
+    let opcion: usize = opcion.trim().parse().unwrap_or(0);
+
+    // Si el usuario selecciona 0 o un número fuera de rango, volvemos al menú principal
+    if opcion == 0 || opcion > simulaciones.len() {
+        println!("Volviendo al menú principal...");
+        return;
+    }
+
+    // Cargamos y mostramos el archivo de simulación seleccionado
+    let archivo_seleccionado = &simulaciones[opcion - 1];
+    mostrar_por_pantalla(archivo_seleccionado);
+}
+
+/// Función que lista los archivos de simulaciones existentes en el directorio.
+fn enlistar_simulaciones() -> Vec<String> {
+    let mut archivos_simulaciones = Vec::new();
+    let path = Path::new("files");
+
+    // Verificamos si el directorio existe
+    if path.exists() {
+        // Leemos el contenido del directorio de simulaciones
+        let entries = match fs::read_dir(path) {
+            Ok(entries) => entries,
+            Err(e) => {
+                println!("Error al leer la carpeta de simulaciones: {}", e);
+                return Vec::new(); // Retornamos un vector vacío en caso de error
+            }
+        };
+
+        for entry in entries {
+            if let Ok(entry) = entry {
+                let file_name = entry.file_name();
+                let file_name = file_name.to_string_lossy().to_string();
+                archivos_simulaciones.push(file_name);
+            }
+        }
+    } else {
+        println!("La carpeta 'files' no existe.");
+    }
+
+    archivos_simulaciones
+}
+
+/// Función que muestra por pantalla el contenido de un archivo de simulación seleccionado.
+fn mostrar_por_pantalla(nombre_archivo: &str) {
+    let path = format!("files/{}", nombre_archivo);
+    let path = Path::new(&path);
+
+    // Intentamos abrir el archivo de simulación
+    if let Ok(file) = File::open(&path) {
+        let reader = io::BufReader::new(file);
+
+        println!("\nContenido de la simulación '{}':\n", nombre_archivo);
+        // Mostramos el contenido del archivo línea por línea
+        for line in reader.lines() {
+            if let Ok(line) = line {
+                println!("{}", line);
+            }
+        }
+    } else {
+        println!("No se pudo abrir el archivo de simulación.");
+    }
+}
+======================================================

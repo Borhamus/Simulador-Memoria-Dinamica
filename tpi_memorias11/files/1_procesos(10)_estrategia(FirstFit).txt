@@ -1,0 +1,36 @@
+Procesos de la Tanda:
+-------------------------------------------
+| Nombre  | Arribo | Duración | Memoria |
+-------------------------------------------
+| P6      | 12     | 42       | 328     |
+| P7      | 23     | 59       | 188     |
+| P3      | 29     | 72       | 259     |
+| P5      | 34     | 33       | 35      |
+| P10     | 38     | 42       | 86      |
+| P2      | 58     | 45       | 385     |
+| P9      | 72     | 96       | 207     |
+| P4      | 75     | 26       | 266     |
+| P8      | 87     | 52       | 140     |
+| P1      | 93     | 70       | 472     |
+-------------------------------------------
+
+Configuración del Simulador:
+-------------------------------------------
+Tamaño de memoria: 100 KB
+Estrategia de asignación: FirstFit
+Tiempo de selección de partición: 10 ms
+Tiempo de carga promedio: 1 ms
+Tiempo de liberación de partición: 10 ms
+-------------------------------------------
+
+Eventos de la Simulación:
+-------------------------------------------
+Evento: Proceso 1 iniciado
+Evento: Proceso 1 finalizado
+-------------------------------------------
+
+Resultados de la Simulación:
+-------------------------------------------
+Resultado: Tiempo de retorno para Proceso 1: 5ms
+Resultado: Fragmentación externa: 10%
+-------------------------------------------

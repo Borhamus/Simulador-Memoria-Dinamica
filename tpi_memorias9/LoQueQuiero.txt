@@ -1,0 +1,41 @@
+yo quiero que el programa arranque y:
+
+1) Limpie la pantalla.
+
+2) Cree la carpeta "files".
+
+3) Se abra un menú que diga:
+
+Bienvenido al simulador de memoria dinámica
+1) Iniciar nueva simulación.
+2) Ver simulaciones anteriores.
+3) salir.
+
+///
+aca si el usuario elige 2, se abre un listado de los archivos de simulaciones y el usuario podrá seleccionar un archivo poniendo 2 dígitos.
+
+y el programa mostrara el archivo por pantalla.
+
+/// 
+Si el usuario elige 1:
+se crea un nuevo archivo.
+Se le pregunta al usuario cuantos proceso va a tener.
+Se cargan en el archivo, en formato tabla.
+Luego se le pide al usuario la configuración de la simulación
+Las configuraciones quedan asignadas y quedan anotadas en el archivo.
+Luego se ejecuta la simulación.
+Cada dato se guarda en el archivo.
+se calculan los resultados.
+Se guarda todo en el archivo.
+
+Luego se muestra por pantalla.
+
+Y dice "precione ok para finalizar" 
+
+vuelve al menú principal.
+
+///
+si pone 3, se termina el programa.
+
+
+

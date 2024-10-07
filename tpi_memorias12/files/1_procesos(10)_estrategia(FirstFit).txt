@@ -1,0 +1,124 @@
+Procesos de la Tanda:
+-------------------------------------------
+| Nombre  | Arribo | Duración | Memoria |
+-------------------------------------------
+| P2      | 1      | 8        | 28      |
+| P1      | 7      | 5        | 2       |
+| P5      | 7      | 7        | 402     |
+| P6      | 9      | 7        | 474     |
+| P3      | 10     | 9        | 442     |
+| P10     | 10     | 7        | 418     |
+| P4      | 13     | 9        | 332     |
+| P9      | 13     | 8        | 203     |
+| P7      | 14     | 7        | 424     |
+| P8      | 18     | 9        | 302     |
+-------------------------------------------
+
+Configuración del Simulador:
+-------------------------------------------
+Tamaño de memoria: 700 KB
+Estrategia de asignación: FirstFit
+Tiempo de selección de partición: 1 ms
+Tiempo de carga promedio: 1 ms
+Tiempo de liberación de partición: 1 ms
+-------------------------------------------
+
+Eventos de la Simulación:
+-------------------------------------------
+En el tiempo global 0, no se asignó ni liberó nada. (Memoria Ocupada: 0 KB de 700 total)
+En el tiempo global 1, el proceso P2 fue asignado correctamente. (Memoria Ocupada: 28 KB de 700 total)
+En el tiempo global 2, no se asignó ni liberó nada. (Memoria Ocupada: 28 KB de 700 total)
+En el tiempo global 3, no se asignó ni liberó nada. (Memoria Ocupada: 28 KB de 700 total)
+En el tiempo global 4, no se asignó ni liberó nada. (Memoria Ocupada: 28 KB de 700 total)
+En el tiempo global 5, no se asignó ni liberó nada. (Memoria Ocupada: 28 KB de 700 total)
+En el tiempo global 6, no se asignó ni liberó nada. (Memoria Ocupada: 28 KB de 700 total)
+En el tiempo global 7, el proceso P1 fue asignado correctamente. (Memoria Ocupada: 30 KB de 700 total)
+En el tiempo global 7, el proceso P5 fue asignado correctamente. (Memoria Ocupada: 432 KB de 700 total)
+En el tiempo global 8, no se asignó ni liberó nada. (Memoria Ocupada: 432 KB de 700 total)
+En el tiempo global 9, se liberó memoria de los procesos finalizados: P2. (Memoria Ocupada: 404 KB de 700 total)
+En el tiempo global 9, la memoria estaba llena o era insuficiente para asignar el proceso P6. El proceso quedó esperando.
+En el tiempo global 10, la memoria estaba llena o era insuficiente para asignar el proceso P6. El proceso quedó esperando.
+En el tiempo global 11, la memoria estaba llena o era insuficiente para asignar el proceso P6. El proceso quedó esperando.
+En el tiempo global 12, se liberó memoria de los procesos finalizados: P1. (Memoria Ocupada: 402 KB de 700 total)
+En el tiempo global 12, la memoria estaba llena o era insuficiente para asignar el proceso P6. El proceso quedó esperando.
+En el tiempo global 13, la memoria estaba llena o era insuficiente para asignar el proceso P6. El proceso quedó esperando.
+En el tiempo global 14, se liberó memoria de los procesos finalizados: P5. (Memoria Ocupada: 0 KB de 700 total)
+En el tiempo global 14, el proceso P6 fue asignado correctamente. (Memoria Ocupada: 474 KB de 700 total)
+En el tiempo global 14, la memoria estaba llena o era insuficiente para asignar el proceso P3. El proceso quedó esperando.
+En el tiempo global 15, la memoria estaba llena o era insuficiente para asignar el proceso P3. El proceso quedó esperando.
+En el tiempo global 16, la memoria estaba llena o era insuficiente para asignar el proceso P3. El proceso quedó esperando.
+En el tiempo global 17, la memoria estaba llena o era insuficiente para asignar el proceso P3. El proceso quedó esperando.
+En el tiempo global 18, la memoria estaba llena o era insuficiente para asignar el proceso P3. El proceso quedó esperando.
+En el tiempo global 19, la memoria estaba llena o era insuficiente para asignar el proceso P3. El proceso quedó esperando.
+En el tiempo global 20, la memoria estaba llena o era insuficiente para asignar el proceso P3. El proceso quedó esperando.
+En el tiempo global 21, se liberó memoria de los procesos finalizados: P6. (Memoria Ocupada: 0 KB de 700 total)
+En el tiempo global 21, el proceso P3 fue asignado correctamente. (Memoria Ocupada: 442 KB de 700 total)
+En el tiempo global 21, la memoria estaba llena o era insuficiente para asignar el proceso P10. El proceso quedó esperando.
+En el tiempo global 22, la memoria estaba llena o era insuficiente para asignar el proceso P10. El proceso quedó esperando.
+En el tiempo global 23, la memoria estaba llena o era insuficiente para asignar el proceso P10. El proceso quedó esperando.
+En el tiempo global 24, la memoria estaba llena o era insuficiente para asignar el proceso P10. El proceso quedó esperando.
+En el tiempo global 25, la memoria estaba llena o era insuficiente para asignar el proceso P10. El proceso quedó esperando.
+En el tiempo global 26, la memoria estaba llena o era insuficiente para asignar el proceso P10. El proceso quedó esperando.
+En el tiempo global 27, la memoria estaba llena o era insuficiente para asignar el proceso P10. El proceso quedó esperando.
+En el tiempo global 28, la memoria estaba llena o era insuficiente para asignar el proceso P10. El proceso quedó esperando.
+En el tiempo global 29, la memoria estaba llena o era insuficiente para asignar el proceso P10. El proceso quedó esperando.
+En el tiempo global 30, se liberó memoria de los procesos finalizados: P3. (Memoria Ocupada: 0 KB de 700 total)
+En el tiempo global 30, el proceso P10 fue asignado correctamente. (Memoria Ocupada: 418 KB de 700 total)
+En el tiempo global 30, la memoria estaba llena o era insuficiente para asignar el proceso P4. El proceso quedó esperando.
+En el tiempo global 31, la memoria estaba llena o era insuficiente para asignar el proceso P4. El proceso quedó esperando.
+En el tiempo global 32, la memoria estaba llena o era insuficiente para asignar el proceso P4. El proceso quedó esperando.
+En el tiempo global 33, la memoria estaba llena o era insuficiente para asignar el proceso P4. El proceso quedó esperando.
+En el tiempo global 34, la memoria estaba llena o era insuficiente para asignar el proceso P4. El proceso quedó esperando.
+En el tiempo global 35, la memoria estaba llena o era insuficiente para asignar el proceso P4. El proceso quedó esperando.
+En el tiempo global 36, la memoria estaba llena o era insuficiente para asignar el proceso P4. El proceso quedó esperando.
+En el tiempo global 37, se liberó memoria de los procesos finalizados: P10. (Memoria Ocupada: 0 KB de 700 total)
+En el tiempo global 37, el proceso P4 fue asignado correctamente. (Memoria Ocupada: 332 KB de 700 total)
+En el tiempo global 37, el proceso P9 fue asignado correctamente. (Memoria Ocupada: 535 KB de 700 total)
+En el tiempo global 37, la memoria estaba llena o era insuficiente para asignar el proceso P7. El proceso quedó esperando.
+En el tiempo global 38, la memoria estaba llena o era insuficiente para asignar el proceso P7. El proceso quedó esperando.
+En el tiempo global 39, la memoria estaba llena o era insuficiente para asignar el proceso P7. El proceso quedó esperando.
+En el tiempo global 40, la memoria estaba llena o era insuficiente para asignar el proceso P7. El proceso quedó esperando.
+En el tiempo global 41, la memoria estaba llena o era insuficiente para asignar el proceso P7. El proceso quedó esperando.
+En el tiempo global 42, la memoria estaba llena o era insuficiente para asignar el proceso P7. El proceso quedó esperando.
+En el tiempo global 43, la memoria estaba llena o era insuficiente para asignar el proceso P7. El proceso quedó esperando.
+En el tiempo global 44, la memoria estaba llena o era insuficiente para asignar el proceso P7. El proceso quedó esperando.
+En el tiempo global 45, se liberó memoria de los procesos finalizados: P9. (Memoria Ocupada: 332 KB de 700 total)
+En el tiempo global 45, la memoria estaba llena o era insuficiente para asignar el proceso P7. El proceso quedó esperando.
+En el tiempo global 46, se liberó memoria de los procesos finalizados: P4. (Memoria Ocupada: 0 KB de 700 total)
+En el tiempo global 46, el proceso P7 fue asignado correctamente. (Memoria Ocupada: 424 KB de 700 total)
+En el tiempo global 46, la memoria estaba llena o era insuficiente para asignar el proceso P8. El proceso quedó esperando.
+En el tiempo global 47, la memoria estaba llena o era insuficiente para asignar el proceso P8. El proceso quedó esperando.
+En el tiempo global 48, la memoria estaba llena o era insuficiente para asignar el proceso P8. El proceso quedó esperando.
+En el tiempo global 49, la memoria estaba llena o era insuficiente para asignar el proceso P8. El proceso quedó esperando.
+En el tiempo global 50, la memoria estaba llena o era insuficiente para asignar el proceso P8. El proceso quedó esperando.
+En el tiempo global 51, la memoria estaba llena o era insuficiente para asignar el proceso P8. El proceso quedó esperando.
+En el tiempo global 52, la memoria estaba llena o era insuficiente para asignar el proceso P8. El proceso quedó esperando.
+En el tiempo global 53, se liberó memoria de los procesos finalizados: P7. (Memoria Ocupada: 0 KB de 700 total)
+En el tiempo global 53, el proceso P8 fue asignado correctamente. (Memoria Ocupada: 302 KB de 700 total)
+En el tiempo global 54, no se asignó ni liberó nada. (Memoria Ocupada: 302 KB de 700 total)
+En el tiempo global 55, no se asignó ni liberó nada. (Memoria Ocupada: 302 KB de 700 total)
+En el tiempo global 56, no se asignó ni liberó nada. (Memoria Ocupada: 302 KB de 700 total)
+En el tiempo global 57, no se asignó ni liberó nada. (Memoria Ocupada: 302 KB de 700 total)
+En el tiempo global 58, no se asignó ni liberó nada. (Memoria Ocupada: 302 KB de 700 total)
+En el tiempo global 59, no se asignó ni liberó nada. (Memoria Ocupada: 302 KB de 700 total)
+En el tiempo global 60, no se asignó ni liberó nada. (Memoria Ocupada: 302 KB de 700 total)
+En el tiempo global 61, no se asignó ni liberó nada. (Memoria Ocupada: 302 KB de 700 total)
+En el tiempo global 62, se liberó memoria de los procesos finalizados: P8. (Memoria Ocupada: 0 KB de 700 total)
+-------------------------------------------
+
+Resultados de la Simulación:
+-------------------------------------------
+Tiempo de retorno del proceso P2: 8 unidades de tiempo.
+Tiempo de retorno del proceso P1: 5 unidades de tiempo.
+Tiempo de retorno del proceso P5: 7 unidades de tiempo.
+Tiempo de retorno del proceso P6: 12 unidades de tiempo.
+Tiempo de retorno del proceso P3: 20 unidades de tiempo.
+Tiempo de retorno del proceso P10: 27 unidades de tiempo.
+Tiempo de retorno del proceso P4: 33 unidades de tiempo.
+Tiempo de retorno del proceso P9: 32 unidades de tiempo.
+Tiempo de retorno del proceso P7: 39 unidades de tiempo.
+Tiempo de retorno del proceso P8: 44 unidades de tiempo.
+Tiempo medio de retorno: 22.70 unidades de tiempo.
+Índice de fragmentación externa: 325.90.
+Tiempo total de la simulación: 63 unidades de tiempo.
+-------------------------------------------
